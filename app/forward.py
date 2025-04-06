@@ -218,18 +218,14 @@ async def forward_message(message: Message, target: dict, edited=False,
             edit_id = msg_ids[target][source][origin_edit_id]
         else:
             can_edit = False
-            logger.error("The message cannot be deleted, because it does " +
-                         "not exist in the target chat")
         if media_group and can_edit:
             edit_id = [msg_ids[target][source][str(id)] for id in ids]
         if edit_id != -1:
             deleted_id = await user.get_messages(target, edit_id)
-            # Remove message, to resend it already edited
             if media_group:
                 await on_deleted_message(user, deleted_id)
             else:
                 await on_deleted_message(user, [deleted_id])
-        await user.delete_messages(target, edit_id)
 
     if not message.chat.has_protected_content:
         msg = await user.forward_messages(target, source, ids)
