@@ -6,6 +6,9 @@ PyWardBot is an open source Telegram message forwarder powered by
 
 ![img_1](https://i.imgur.com/F12yXjv.gif)
 
+## What's changed in this fork?
+- Deleted and edited messages from source chats don't get deleted in target chat
+
 ## Features
 - Set by Telegram ID or by username
 - Telegram protected content bypass
@@ -39,7 +42,7 @@ and get the bot token.
 After installing Python and Git, and creating a bot, open a terminal and do the following:
 ```bash
 # Clone repository
-git clone https://github.com/nunnito/PyWardBot.git
+git clone https://github.com/be4zad/PyWardBot.git
 
 # Change directory to the cloned repository
 cd PyWardBot
@@ -114,9 +117,6 @@ That's it! Now you can start the bot and set it up!
 
 
 ## FAQ
-### Is necessary to install Git?
-No, you can download the source code as a zip file from [here](https://github.com/nunnito/PyWardBot/archive/refs/heads/master.zip). Then unzip it and follow the installation [instructions](#installation)
-
 ### How to add a new admin?
 By default, the bot is configured to run only for yourself. If you want to add a new admin, you can do it by adding the new Telegram ID to the `admins` array in the `bot.json` file.
 
