@@ -789,11 +789,12 @@ async def on_deleted_message(client: Client, messages: list[Message]):
                     deleted_msg.append(msg_deleted)
                     deleted_ids.append(del_id)
 
-    # If there are messages to delete
     if len(deleted_msg) > 0 and msg_deleted.chat is not None:
         target = msg_deleted.chat.id
         from_user = msg_deleted.chat.title if msg_deleted.chat.title else\
             msg_deleted.chat.first_name
-        logger.info(f"Removing messages from {from_user}")
-        await user.delete_messages(target, deleted_ids)
+        logger.info(f"Message IDs {deleted_ids} removed in {from_user}")
+        for deleted_id in deleted_ids:
+            await user.send_message(target, "Message removed in source channel", reply_to_message_id=deleted_id) 
+
         await on_deleted_message(user, deleted_msg)
